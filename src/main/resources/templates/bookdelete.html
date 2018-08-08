@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Usun ksiazke</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+          integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+</head>
+<body>
+<div style="width: 600px; margin: auto; border: 1px #ccc solid; padding: 30px">
+    <h2>Usuń ksiazkę</h2>
+    <form action="/deletebook" method="post" th:object="${delBook}">
+
+        <div class="form-group">
+            <label for="id">Wybierz id:</label>
+            <select class="form-control" th:field="*{id}" >
+                <option th:each="book: ${allBooks}" th:text="${book.id}" th:value="${book.id}" id="id"></option>
+            </select>
+        </div>
+
+        <input type="submit" value="Usuń z bazy" class="btn btn-primary"/>
+
+    </form>
+</div>
+</body>
+</html>
