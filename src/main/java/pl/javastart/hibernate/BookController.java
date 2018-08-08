@@ -121,6 +121,7 @@ public class BookController {
         book1.setAuthor(book.getAuthor());
         book1.setCategory(book.getCategory());
         book1.setIsbn(book.getIsbn());
+        book1.setIssueDate(book.getIssueDate());
         transaction.commit();
 
         return "redirect:/";
