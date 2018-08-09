@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -123,6 +125,27 @@ public class BookController {
         book1.setIsbn(book.getIsbn());
         book1.setIssueDate(book.getIssueDate());
         transaction.commit();
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/sortlist")
+    public String editBook( Model model) {
+        String field = "";
+        List<String> stringList = new ArrayList<>();
+        stringList.add("tytul");
+        stringList.add("isbn");
+        stringList.add("data wydania");
+
+        model.addAttribute("list", stringList);
+//        model.addAttribute("field", field);
+        return "sortview";
+    }
+
+    @PostMapping("/sorted")
+    public String editBook(@RequestParam("field") String field) {
+
+
 
         return "redirect:/";
     }
