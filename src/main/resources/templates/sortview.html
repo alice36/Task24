@@ -9,12 +9,12 @@
 <body>
 <div style="width: 600px; margin: auto; border: 1px #ccc solid; padding: 30px">
     <h2>Sortowanie</h2>
-    <form action="/sorted" method="post">
+    <form action="/sorted">
 
         <div class="form-group">
-            <label for="field">Wybierz pole sortowania:</label>
-            <select class="form-control">
-                <option th:each="listString: ${list}" th:text="${listString}" th:value="${listString}" id="field" th:name="field"></option>
+            <label >Wybierz pole sortowania:</label>
+            <select class="form-control" th:name="field">
+                <option th:each="listString: ${list}" th:text="${listString}" th:value="${listString}" id="field"></option>
             </select>
         </div>
 

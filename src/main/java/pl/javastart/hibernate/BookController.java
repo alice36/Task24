@@ -142,11 +142,25 @@ public class BookController {
         return "sortview";
     }
 
-    @PostMapping("/sorted")
-    public String editBook(@RequestParam("field") String field) {
+    @GetMapping("/sorted")
+    public String editBook(@RequestParam("field") String field, Model model) {
 
+        EntityManager entityManager = factory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        TypedQuery<Book> query = null;
+    if (field.equals("tytul")){
 
+        query = entityManager.createQuery("select b from Book b order by b.title", Book.class);
 
-        return "redirect:/";
+    } else if (field.equals("isbn")){
+        query = entityManager.createQuery("select b from Book b order by b.isbn", Book.class);
+    } else if (field.equals("data wydania")){
+        query = entityManager.createQuery("select b from Book b order by b.issueDate", Book.class);
+    }
+        List<Book> allBooks = query.getResultList();
+        model.addAttribute("allBooks",allBooks);
+
+        return "index";
     }
 }
